@@ -33,10 +33,10 @@ int partition(int arr[], int low, int high){
 }
 void QuickSort(int arr[], int start, int end){
 	int pos;
-	while (start < end){
+	if (start < end){
 		pos = partition(arr, start, end);
 		QuickSort(arr, start, pos - 1);
-		start = pos + 1;
-		//QuickSort(arr, pos + 1, end);
+		QuickSort(arr, pos + 1, end);
 	}
+	//return ;
 }
