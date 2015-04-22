@@ -6,7 +6,6 @@ int main(){
 	void QuickSort(int *, int, int);
 
 	QuickSort(a, 0, 9);
-	//QuickSort(a);
 
 	for (i = 0; i < 10; i++){
 		printf("%d\n", a[i]);
@@ -14,29 +13,25 @@ int main(){
 
 	return 0;
 }
-
-int partition(int arr[], int low, int high){
-	int key;
-	key = arr[low];
-	while (low < high){
-		while (low < high && arr[high] >= key)
-			high--;
-		if (low < high)
-			arr[low++] = arr[high];
-		while (low < high && arr[low] <= key)
-			low++;
-		if (low < high)
-			arr[high--] = arr[low];
+int quicksort1(int a[], int low, int high){
+	int temp;
+	temp = a[low];
+	while (low < high)
+	{
+		while (low < high && a[high] >= temp) --high;
+		a[low] = a[high];
+		while (low < high && a[low] <= temp) ++low;
+		a[high] = a[low];
 	}
-	arr[low] = key;
+	a[low] = temp;
 	return low;
 }
-void QuickSort(int arr[], int start, int end){
-	int pos;
-	while (start < end){
-		pos = partition(arr, start, end);
-		QuickSort(arr, start, pos - 1);
-		start = pos + 1;
-		//QuickSort(arr, pos + 1, end);
+void QuickSort(int a[], int low, int high){
+	int temp;
+	while (low < high){
+		temp = quicksort1(a, low, high);
+		QuickSort(a, low, temp - 1);
+		low = temp + 1;
+//		QuickSort(a, temp + 1, high);
 	}
 }
